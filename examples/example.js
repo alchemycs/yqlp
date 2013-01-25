@@ -7,33 +7,74 @@ All rights reserved.
 
 */
 
-var YQL = require('yql');
+var YQL = require('../lib/yql');
+var util = require('util');
 
-// Example #1 - Param binding
-new YQL.exec("SELECT * FROM weather.forecast WHERE (location = @zip)", function(response) {
-
-	if (response.error) {
-		console.log("Example #1... Error: " + response.error.description);
-	} 
-	else {
-        var location  = response.query.results.channel.location,
-            condition = response.query.results.channel.item.condition;
-        console.log("Example #1... The current weather in " + location.city + ', ' + location.region + " is " + condition.temp + " degrees and " + condition.text);
-	}
-
-}, {"zip": 94089});
-
-
-// Example #2 - Param binding + SSL
-new YQL.exec("select * from twitter.user.timeline where (id = @id)", function(response) {
-
-    if (response.error) {
-        console.log(require('util').inspect(error));
-        console.log("Example #2... Error: " + response.error.description);
-    } 
-    else {
-        var tweets = response.query.results.statuses.status;
-        console.log("Example #2... Latest tweet from @" + tweets[0].user.screen_name + ": " + tweets[0].text);
+//Example #1 - Parameter Binding using callback
+YQL.exec("SELECT * FROM weather.forecast WHERE woeid=@woeid AND u='c'", { woeid:28341390 }, function(error, response) {
+    if (error) {
+        console.log('Ut oh! Example #1 has messed up:', error);
+    } else {
+        var results = response.query.results;
+        var output = util.format('Example #1, The current weather in %s, %s is %s%s and %s',
+            results.channel.location.city,
+            results.channel.location.country,
+            results.channel.item.condition.temp,
+            results.channel.units.temperature,
+            results.channel.item.condition.text
+        );
+        console.log(output);
     }
+});
 
-}, {id:"derek"}, {ssl:true});
+// Example #2 - Parameter binding + SSL
+YQL.exec("SELECT * FROM weather.forecast WHERE woeid=@woeid AND u='c'", { woeid:1105779 }, { ssl: true }, function(error, response) {
+    if (error) {
+        console.log('Ut oh! Example #2 has messed up:', error);
+    } else {
+        var results = response.query.results;
+        var output = util.format('Example #2, The current weather in %s, %s is %s%s and %s',
+            results.channel.location.city,
+            results.channel.location.country,
+            results.channel.item.condition.temp,
+            results.channel.units.temperature,
+            results.channel.item.condition.text
+        );
+        console.log(output);
+    }
+});
+
+//Example #3 - Parameter Binding using promise
+YQL.execp("SELECT * FROM weather.forecast WHERE woeid=@woeid AND u='c'", { woeid:2348079 })
+.then(function(response) {
+    var results = response.query.results;
+    var output = util.format('Example #3, The current weather in %s, %s is %s%s and %s',
+        results.channel.location.city,
+        results.channel.location.country,
+        results.channel.item.condition.temp,
+        results.channel.units.temperature,
+        results.channel.item.condition.text
+    );
+    console.log(output);
+}, function(error) {
+    console.log('Ut oh! Example #3 has messed up:', error);
+});
+
+
+
+// Example #4 - Parameter binding + SSL with promise
+YQL.execp("SELECT * FROM weather.forecast WHERE woeid=@woeid AND u='c'", { woeid:56504010 }, { ssl: true })
+.then(function(response) {
+    var results = response.query.results;
+    var output = util.format('Example #4, The current weather in %s, %s is %s%s and %s',
+        results.channel.location.city,
+        results.channel.location.country,
+        results.channel.item.condition.temp,
+        results.channel.units.temperature,
+        results.channel.item.condition.text
+    );
+    console.log(output);
+}, function(error) {
+    console.log('Ut oh! Example #4 has messed up:', error);
+});
+
