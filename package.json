@@ -1,15 +1,15 @@
-{ "name"         : "yql"
-, "version"      : "0.4.8"
+{ "name"         : "yqlp"
+, "version"      : "0.1.0"
 , "engines"      : { ">=npm":"1.1.0-3", "node":">=v0.6.9" }
-, "maintainers"  : [ { "name": "Derek Gathright", "email": "drg@yahoo-inc.com" } ]
-, "scripts"      : { "test": "node ./tests/main.js" }
+, "maintainers"  : [ { "name": "Michael McHugh", "email": "developer@yrucalling.me" } ]
+, "scripts"      : { "test": "node ./tests/main.js", "examples": "node ./examples/example.js" }
 , "main"         : "./lib/yql"
 , "directories"  : { "lib" : "./lib/" }
-, "description"  : "A YQL (Yahoo Query Language) client"
-, "url"          : "https://github.com/derek/node-yql"
-, "contributors" : [ "Michael McHugh <developer@yrucalling.me>", "Michael Matuzak <matuzak@yahoo-inc.com>" ]
+, "description"  : "A YQL (Yahoo Query Language) client that uses promise/future objects"
+, "url"          : "https://github.com/alchemycs/yqlp"
+, "author"       : "Michael McHugh <developer@yrucalling.me>"
 , "keywords"     : [ "yql" ]
-, "repository"   : {"type" : "git", "url" : "http://github.com/derek/node-yql.git" }
-, "bugs"         : { "mail" : "drg@yahoo-inc.com", "url": "https://github.com/derek/node-yql/issues" }
-, "licenses"     : [ { "type": "BSD", "url": "https://github.com/derek/node-yql/raw/master/LICENSE" } ]
+, "repository"   : {"type" : "git", "url" : "http://github.com/alchemycs/yqlp.git" }
+, "bugs"         : { "url": "https://github.com/alchemycs/yqlp/issues" }
+, "licenses"     : [ { "type": "BSD", "url": "https://github.com/alchemycs/yqlp/raw/master/LICENSE" } ]
 , "dependencies" : { "request" : ">=2.9.201", "q" : ">=0.8.5" }}
