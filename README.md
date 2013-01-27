@@ -1,7 +1,7 @@
 yqlq
 ====
 
-This `yqlp` module is a YQL client for node.js forked from the excellent 
+This `yqlp` module is a YQL client for node.js inspired by the 
 [node-yql](https://github.com/derek/node-yql) module by Derek Gathright.
 
 This fork builds upon the previous work primarily through the introduction of
