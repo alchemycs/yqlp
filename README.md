@@ -1,4 +1,4 @@
-yqlq
+yqlq [![Build Status](https://travis-ci.org/alchemycs/yqlp.png?branch=develop)](https://travis-ci.org/alchemycs/yqlp)
 ====
 
 This `yqlp` module is a YQL client for node.js inspired by the 
