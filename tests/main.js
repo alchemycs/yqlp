@@ -91,3 +91,18 @@ new yql.exec("SELECT * FROM html", function(error, response) {
         console.log("Test #8: OK");
     }).done();
 })();
+
+// Example #9 - Pass a huge parameter
+(function() {
+    var request = require('request');
+    request('http://www.complispace.com.au/', function(error, response, body) {
+        assert.ok(body, "Test #9: Failed because couldn't retrieve test text");
+        yql.execp("SELECT * FROM contentanalysis.analyze WHERE text = @source", { source:body })
+            .then(function(response) {
+                assert.ok(response, "Test #9: Large request was successful, but response is null");
+                console.log("Test #9: Ok");
+            }, function(error) {
+                assert.ifError(error);
+            }).done();
+    });
+})();
