@@ -1,5 +1,5 @@
 { "name"         : "yqlp"
-, "version"      : "0.1.0"
+, "version"      : "0.2.0"
 , "engines"      : { ">=npm":"1.1.0-3", "node":">=v0.6.9" }
 , "maintainers"  : [ { "name": "Michael McHugh", "email": "developer@yrucalling.me" } ]
 , "scripts"      : { "test": "node ./tests/main.js", "examples": "node ./examples/example.js" }
